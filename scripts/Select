@@ -1,14 +1,39 @@
-SELECT 
-    r.fecha, 
-    m.nombre AS maquina, 
-    e.nombre AS operario, 
-    ref.nombre AS producto, 
-    r.pacas_producidas
-FROM Registro_Produccion r
-JOIN Maquina m ON r.id_maquina = m.id_maquina
-JOIN Empleado e ON r.id_operario = e.id_empleado
-JOIN Referencia ref ON r.id_referencia = ref.id_referencia;
+-- ==========================================
+-- CONSULTAS DE COMPROBACIÓN Y ANÁLISIS
+-- ==========================================
 
+-- 1. Consultar los KPIs desde las Vistas Analíticas
 SELECT * FROM vw_productividad_mensual;
 
 SELECT * FROM vw_participacion_paros;
+
+
+-- 2. Reporte general de producción (Cruzando tablas para ver nombres reales, no solo IDs)
+SELECT 
+    r.fecha,
+    t.descripcion AS turno,
+    m.nombre AS maquina,
+    e.nombre AS operario,
+    ref.nombre AS producto,
+    r.pacas_producidas
+FROM Registro_Produccion r
+JOIN Turno t ON r.id_turno = t.id_turno
+JOIN Maquina m ON r.id_maquina = m.id_maquina
+JOIN Empleado e ON r.id_operario = e.id_empleado
+JOIN Referencia ref ON r.id_referencia = ref.id_referencia
+ORDER BY r.fecha DESC;
+
+
+-- 3. Historial detallado de los tiempos muertos (Paros)
+SELECT 
+    dp.id_registro,
+    m.nombre AS maquina,
+    cp.descripcion AS causa_principal,
+    sp.descripcion AS subcausa,
+    dp.horas_paro,
+    dp.observacion
+FROM Detalle_Paro dp
+JOIN Registro_Produccion r ON dp.id_registro = r.id_registro
+JOIN Maquina m ON r.id_maquina = m.id_maquina
+JOIN Codigo_Paro cp ON dp.id_codigo = cp.id_codigo
+LEFT JOIN Subcodigo_Paro sp ON dp.id_subcodigo = sp.id_subcodigo;
