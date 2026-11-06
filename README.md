@@ -40,5 +40,6 @@ erDiagram
     Registro_Produccion ||--o{ Detalle_Paro : "registra"
     Codigo_Paro ||--o{ Detalle_Paro : "causa"
     Subcodigo_Paro ||--o{ Detalle_Paro : "detalla"
-> # **Evidencia del Sistema Previo:**
-> El archivo `Control_Produccion.xlsx` (disponible en la raíz de este repositorio) contiene el dataset original previo a la migración. Se incluye como evidencia técnica del estado inicial de los datos, ilustrando las violaciones de 1FN (columnas repetitivas de paros) y la redundancia que motivaron este rediseño a 3FN.
+
+**Nota sobre la fuente de datos original (Excel):**
+Para efectos de auditoría y validación del modelo, se adjunta el archivo original `Control_Produccion.xlsx`. Este documento evidencia el estado previo del sistema de información, en el cual la captura manual generaba redundancia en entidades maestras (operarios, máquinas y referencias) y rigidez en el registro de tiempos muertos (paros). El modelo relacional desarrollado en este proyecto resuelve de manera definitiva estas deficiencias estructurales.
