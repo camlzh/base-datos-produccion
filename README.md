@@ -40,3 +40,5 @@ erDiagram
     Registro_Produccion ||--o{ Detalle_Paro : "registra"
     Codigo_Paro ||--o{ Detalle_Paro : "causa"
     Subcodigo_Paro ||--o{ Detalle_Paro : "detalla"
+> # **Evidencia del Sistema Previo:**
+> El archivo `Control_Produccion.xlsx` (disponible en la raíz de este repositorio) contiene el dataset original previo a la migración. Se incluye como evidencia técnica del estado inicial de los datos, ilustrando las violaciones de 1FN (columnas repetitivas de paros) y la redundancia que motivaron este rediseño a 3FN.
