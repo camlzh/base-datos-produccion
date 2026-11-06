@@ -1,0 +1,14 @@
+SELECT 
+    r.fecha, 
+    m.nombre AS maquina, 
+    e.nombre AS operario, 
+    ref.nombre AS producto, 
+    r.pacas_producidas
+FROM Registro_Produccion r
+JOIN Maquina m ON r.id_maquina = m.id_maquina
+JOIN Empleado e ON r.id_operario = e.id_empleado
+JOIN Referencia ref ON r.id_referencia = ref.id_referencia;
+
+SELECT * FROM vw_productividad_mensual;
+
+SELECT * FROM vw_participacion_paros;
