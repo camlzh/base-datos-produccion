@@ -27,3 +27,16 @@ Para implementar este modelo en PostgreSQL:
 El script genera automáticamente vistas listas para herramientas de BI:
 * `vw_productividad_mensual`: Calcula la eficiencia real vs esperada por máquina y mes.
 * `vw_participacion_paros`: Muestra el % de tiempo perdido por cada tipo de paro.
+##  Diagrama Entidad-Relación (ERD)
+
+```mermaid
+erDiagram
+    Rol ||--o{ Empleado : "agrupa"
+    Empleado ||--o{ Registro_Produccion : "registra / opera"
+    Maquina ||--o{ Registro_Produccion : "produce en"
+    Referencia ||--o{ Registro_Produccion : "se empaca"
+    Turno ||--o{ Registro_Produccion : "ocurre en"
+    Codigo_Paro ||--o{ Subcodigo_Paro : "tiene"
+    Registro_Produccion ||--o{ Detalle_Paro : "registra"
+    Codigo_Paro ||--o{ Detalle_Paro : "causa"
+    Subcodigo_Paro ||--o{ Detalle_Paro : "detalla"
