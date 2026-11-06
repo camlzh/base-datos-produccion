@@ -29,6 +29,9 @@ El script genera automáticamente vistas listas para herramientas de BI:
 * `vw_participacion_paros`: Muestra el % de tiempo perdido por cada tipo de paro.
 ##  Diagrama Entidad-Relación (ERD)
 
+**Nota sobre la fuente de datos original (Excel):**
+Para efectos de auditoría y validación del modelo, se adjunta el archivo original `Control_Produccion.xlsx`. Este documento evidencia el estado previo del sistema de información, en el cual la captura manual generaba redundancia en entidades maestras (operarios, máquinas y referencias) y rigidez en el registro de tiempos muertos (paros). El modelo relacional desarrollado en este proyecto resuelve de manera definitiva estas deficiencias estructurales.
+
 ```mermaid
 erDiagram
     Rol ||--o{ Empleado : "agrupa"
@@ -41,5 +44,3 @@ erDiagram
     Codigo_Paro ||--o{ Detalle_Paro : "causa"
     Subcodigo_Paro ||--o{ Detalle_Paro : "detalla"
 
-**Nota sobre la fuente de datos original (Excel):**
-Para efectos de auditoría y validación del modelo, se adjunta el archivo original `Control_Produccion.xlsx`. Este documento evidencia el estado previo del sistema de información, en el cual la captura manual generaba redundancia en entidades maestras (operarios, máquinas y referencias) y rigidez en el registro de tiempos muertos (paros). El modelo relacional desarrollado en este proyecto resuelve de manera definitiva estas deficiencias estructurales.
